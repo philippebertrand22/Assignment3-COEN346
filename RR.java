@@ -1,6 +1,6 @@
 // Java program for implementation of RR scheduling
 
-public class RR
+public class RR extends Thread
 {
 	// Method to find the waiting time for all
 	// processes
@@ -109,18 +109,4 @@ public class RR
 						(float)total_tat / (float)n);
 	}
 	
-	// Driver Method
-	public static void main(String[] args)
-	{
-		// process id's
-		int processes[] = { 1, 2, 3};
-		int n = processes.length;
-	
-		// Burst time of all processes
-		int burst_time[] = {10, 5, 8};
-	
-		// Time quantum
-		int quantum = 2;
-		findavgTime(processes, n, burst_time, quantum);
-	}
 }
