@@ -1,6 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 
 public class Driver extends Thread {
 	public static void main(String[] args) throws FileNotFoundException
@@ -23,5 +28,7 @@ public class Driver extends Thread {
 					System.out.println("Sussy Baka");
 				}
 
+		PrintStream out = new PrintStream(new FileOutputStream("output.txt"));		
+       
 	}
 }
