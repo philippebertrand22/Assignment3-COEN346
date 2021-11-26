@@ -1,15 +1,27 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Driver extends Thread {
-	public static void main(String[] args)
+	public static void main(String[] args) throws FileNotFoundException
 	{
-		// process id's
+		// choosing how many processes and their ids
 		int processes[] = { 1, 2, 3, 4};
 		int n = processes.length;
 	
-		// Burst time of all processes
+		// Burst time of the processes
 		int burst_time[] = {10, 5, 8, 12};
 	
-		// Time quantum
-		int quantum = 6;
-		RR.findavgTime(processes, n, burst_time, quantum);
+		// quantum of the round robin
+		int quantum = 2;
+		RR.AVGtime(processes, n, burst_time, quantum);
+
+		File file = new File("input.txt");
+		Scanner scan = new Scanner(file);
+		
+				while (scan.hasNextLine()){
+					System.out.println("Sussy Baka");
+				}
+
 	}
 }
