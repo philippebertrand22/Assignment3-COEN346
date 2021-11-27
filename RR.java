@@ -1,6 +1,7 @@
 public class RR extends Driver
 {
-	static void WaitTime(int processes[], int n, int BurstTime[], int WaitingTime[], int quantum)
+	
+	static void WaitTime(int processes[], int n, int BurstTime[], int WaitingTime[])
 	{
 	
 		int remaining_BT[] = new int[n];
@@ -13,14 +14,20 @@ public class RR extends Driver
 		while(true)
 		{
 			boolean Complete = true;
+			
 	
 			for (int i = 0 ; i < n; i++)
 			{
+
+
 				// if remaining burst time is more than 0 then put through round robin
 				if (remaining_BT[i] > 0)
 				{
 					Complete = false;
-	
+
+					//setting a dynamic quantum according to the problem statement
+					int quantum = 2;//(remaining_BT[i] * 10)/100;
+
 					// if remaining burst time is bigger than quantum then, update time variable and update new remaining burst time
 					if (remaining_BT[i] > quantum)
 					{
@@ -48,14 +55,13 @@ public class RR extends Driver
 		}
 	}
 	// calculating average from all waiting times
-	static void AVGtime(int processes[], int n, int burstTime[],
-										int quantum)
+	static void AVGtime(int processes[], int n, int burstTime[])
 	{
 		int waitTime[] = new int[n];
 		int totalWaitTime = 0;
 	
 		// finding wait time
-		WaitTime(processes, n, burstTime, waitTime, quantum);
+		WaitTime(processes, n, burstTime, waitTime);
 	
 		// output
 		System.out.println("Processes " + " Burst time " +
