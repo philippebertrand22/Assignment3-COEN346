@@ -1,9 +1,10 @@
 public class RR extends Driver
 {
 	
-	static void WaitTime(int processes[], int n, int BurstTime[], int WaitingTime[])
+	static void WaitTime(RR[] newThreads, int n, int BurstTime[])
 	{
-	
+		int waitTime[] = new int[n];
+
 		int remaining_BT[] = new int[n];
 		for (int i = 0 ; i < n ; i++)
 			remaining_BT[i] = BurstTime[i];
@@ -14,19 +15,25 @@ public class RR extends Driver
 		while(true)
 		{
 			boolean Complete = true;
-			
 	
 			for (int i = 0 ; i < n; i++)
 			{
 
-
 				// if remaining burst time is more than 0 then put through round robin
 				if (remaining_BT[i] > 0)
 				{
+					//if statement to see if its the first time the process is lauched
+					if(BurstTime[i] == remaining_BT[i]){
+						System.out.println("Time " + t + ", Process " + (i+1) + ", Started");
+					}
 					Complete = false;
 
+					System.out.println("Time " + t + ", Process " + (i+1) + ", Resumed");
+
 					//setting a dynamic quantum according to the problem statement
-					int quantum = 2;//(remaining_BT[i] * 10)/100;
+					int quantum = 2; //remaining_BT[i] * (10/100);
+
+						System.out.println("Time " + t + ", Process " + (i+1) + ", Paused");
 
 					// if remaining burst time is bigger than quantum then, update time variable and update new remaining burst time
 					if (remaining_BT[i] > quantum)
@@ -37,14 +44,17 @@ public class RR extends Driver
 					}
 	
 					// if remaining burst time is smaller than quantum then, update time variable, set total waiting time for this process
-					// set remaining burst time to zero since, process completed
+					// set remaining burst time to zero since, process finished
 					else
 					{
 						t = t + remaining_BT[i];
 	
-						WaitingTime[i] = t - BurstTime[i];
+						waitTime[i] = t - BurstTime[i];
 	
 						remaining_BT[i] = 0;
+
+						System.out.println("Time " + t + ", Process " + (i+1) + ", Finished");
+
 					}
 				}
 			}
@@ -53,30 +63,11 @@ public class RR extends Driver
 			if (Complete == true)
 			break;
 		}
-	}
-	// calculating average from all waiting times
-	static void AVGtime(int processes[], int n, int burstTime[])
-	{
-		int waitTime[] = new int[n];
-		int totalWaitTime = 0;
-	
-		// finding wait time
-		WaitTime(processes, n, burstTime, waitTime);
-	
-		// output
-		System.out.println("Processes " + " Burst time " +
-					" Waiting time ");
-	
-		// calculate total waiting time
+		// printing table
+		System.out.println("Processe " + " Waiting time ");
 		for (int i=0; i<n; i++)
 		{
-			totalWaitTime = totalWaitTime + waitTime[i];
-			System.out.println(" " + (i+1) + "\t\t" + burstTime[i] +"\t " +
-							waitTime[i]);
+			System.out.println(" " + (i+1) + "\t\t" + waitTime[i]);
 		}
-	
-		System.out.println("Average waiting time = " +
-						(float)totalWaitTime / (float)n);
 	}
-	
 }
