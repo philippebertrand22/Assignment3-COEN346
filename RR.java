@@ -64,7 +64,7 @@ public class RR extends Driver
 			break;
 		}
 		// printing table
-		System.out.println("Processe " + " Waiting time ");
+		System.out.println("Process " + " Waiting time ");
 		for (int i=0; i<n; i++)
 		{
 			System.out.println(" " + (i+1) + "\t\t" + waitTime[i]);
