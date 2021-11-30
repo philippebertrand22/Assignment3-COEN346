@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class RR extends Driver
 {
 	
@@ -69,5 +72,23 @@ public class RR extends Driver
 		{
 			System.out.println(" " + (i+1) + "\t\t" + waitTime[i]);
 		}
+
+		
+		try{
+			//outputting the console to a text file
+			FileWriter outFile = new FileWriter("output.txt");
+
+			outFile.write("Process " + " Waiting time " + "\n");
+
+			for (int i=0; i<n; i++){
+			outFile.write(" " + (i+1) + "\t\t\t\t" + waitTime[i] + "\n");
+			}
+
+			outFile.close();
+			
+		   }
+		   catch(IOException e){
+				System.out.println("Error during writing");
+		   }
 	}
 }

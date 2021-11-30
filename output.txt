@@ -1,0 +1,6 @@
+Process  Waiting time 
+ 1				0
+ 2				7
+ 3				4
+ 4				9
+ 5				7
